@@ -26,6 +26,7 @@ main{
 
 .loaderContainer{
   height: 100vh;
+  color: #000;
 }
 
 .loader {
