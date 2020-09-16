@@ -25,7 +25,7 @@ main{
 }
 
 .loaderContainer{
-  height: 100vh;
+  margin: auto;
   color: #000;
 }
 
@@ -98,15 +98,15 @@ img{
 }
 
 #searchField{
-  width: 90%;
+  width: 100%;
   padding: 1em;
   border: 1px solid #fff;
   background-color: transparent;
-  border-radius: 1rem;
+  border-radius: 1em;
 }
 
 .searchIcon{
-  padding: .4em;
+  padding: 1em;
   border-radius: .4em;
 }
 
@@ -135,10 +135,6 @@ img{
   padding: .4em 1em;
 }
 
-.ReactPlayer{
-  display: none;
-}
-
 .nowPlaying{
   position: sticky;
   bottom: 0;
@@ -158,12 +154,18 @@ img{
   display: flex;
 }
 
+.ReactPlayer{
+  display: none;
+}
+
+
 /*===============================================  MEDIA QUERIES   */
 
 @media (max-width: 925px) {
   
   .container{
     flex-direction: column-reverse;
+    justify-content: flex-end;
   }
 
   .channelCard:hover{

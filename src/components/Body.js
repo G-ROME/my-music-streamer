@@ -8,15 +8,16 @@ import ReactPlayer from 'react-player/youtube';
 
 
 function Body() {
-    
+    //https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&order=relevance&q=nightcore&type=video&videoCategoryId=10&key=AIzaSyDzY0fScGb143f1ww8sq-2ES_3fYVBStZQ
     const api = 'https://www.googleapis.com/youtube/v3';
-        const maxResults = 8;
-        const [queryString, setQueryString] = useState('lofi');
+        const maxResults = 12;
+        const [queryString, setQueryString] = useState('aviencloud');
     const params =
     `/search?part=snippet&maxResults=${maxResults}&order=relevance&q=${queryString}&type=video&videoCategoryId=10&key=`;
     const API_KEY= process.env.REACT_APP_API_KEY;
-    const API_KEY_testAccount= process.env.REACT_APP_API_KEY_testAccount;
-    const apiUrl = api + params + API_KEY;
+    const API_KEY_test= process.env.REACT_APP_API_KEY_test;
+    const API_KEY_test01= process.env.REACT_APP_API_KEY_test01;
+    const apiUrl = api + params + API_KEY_test01;
 
     const [sauce, setSauce] = useState(null);
     let url = `https://www.youtube.com/watch?v=${sauce}`;
@@ -34,6 +35,7 @@ function Body() {
 
     const [playList, setPlaylist] = useState([]);
     
+
     useEffect(() => {
         setMusic({
             loading:true,
@@ -86,6 +88,8 @@ function Body() {
                 }
             }
         >
+            {/* //TODO --change this part to conserve quota -- update I have no idea how
+            //I'll get back to it */}
             <img src={music.snippet.thumbnails.default.url} alt='[img]'></img>
             <p>{music.snippet.title}</p>
         </div>
@@ -109,7 +113,6 @@ function Body() {
         let image = new Image();
         image.src = `http://i.ytimg.com/vi/${vidId}/maxresdefault.jpg`;
         image.onload = function(){
-            console.log(this.width);
             if(this.width >120){
                 setBg(this.src);
             }else{
@@ -122,10 +125,12 @@ function Body() {
         content = <div className = 'loaderContainer'>
             {music.error}
             {music.data}
+            <p>
+                if you're getting a 403, it means we've run out of quota
+                quotas reset on 3pm PST so come back here after the quota resets
+            </p>
         </div>
     }
-
-    
 
     return(
         <main style={{backgroundImage: `url(${bg})`}}>
@@ -139,12 +144,11 @@ function Body() {
                         type = 'text' 
                         placeholder = {queryString}
                         onClick = {() => {
-                            document.getElementById('searchField').onKeyUp = function(event){
-                                window.alert('clicc')
-                                if(event.keyCode === 13){
-                                    setQueryString(this.value)
+                                document.getElementById('searchField').addEventListener('keyup', function(event){
+                                    if(event.keyCode === 13){
+                                        setQueryString(this.value)
                                     }
-                                }
+                                });
                             }
                         }
                     />
