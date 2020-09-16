@@ -8,7 +8,7 @@ import ReactPlayer from 'react-player/youtube';
 
 
 function Body() {
-    //https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&order=relevance&q=nightcore&type=video&videoCategoryId=10&key=AIzaSyDzY0fScGb143f1ww8sq-2ES_3fYVBStZQ
+    //https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&order=relevance&q=nightcore&type=video&videoCategoryId=10&key=(your key here)
     const api = 'https://www.googleapis.com/youtube/v3';
         const maxResults = 12;
         const [queryString, setQueryString] = useState('aviencloud');
