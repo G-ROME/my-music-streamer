@@ -1,5 +1,5 @@
 {
-  "homepage": "http://G-ROME.github.io/streamMusic",
+  "homepage": "http://G-ROME.github.io/my-music-streamer",
   "name": "my-music-streamer",
   "version": "0.1.0",
   "private": true,
@@ -20,7 +20,7 @@
     "react-youtube": "^7.12.0"
   },
   "scripts": {
-    "predeploy": "npm rin build",
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
