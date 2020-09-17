@@ -105,6 +105,8 @@ function Body() {
             checkAndSetBg(playList[trackKey].id);
             setBottomPreview(<div className = 'flex'>{'Fetching: ' + playList[trackKey].title }<div className='miniLoader'/></div>);
             setPlay(true);
+        }else{
+            setBottomPreview("couldn't fetch data check your internet connection and try again");
         }
     }
 
