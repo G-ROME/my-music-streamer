@@ -112,7 +112,7 @@ function Body() {
 
     function checkAndSetBg(vidId){
         let image = new Image();
-        image.src = `http://i.ytimg.com/vi/${vidId}/maxresdefault.jpg`;
+        image.src = `https://i.ytimg.com/vi/${vidId}/maxresdefault.jpg`;
         image.onload = function(){
             if(this.width >120){
                 setBg(this.src);
@@ -190,6 +190,17 @@ function Body() {
                 url = {url}
                 playing = {play}
                 loop = {true}
+                config = {
+                    {
+                        youtube: {
+                            playerVars: {
+                                height : '144p',
+                                width: '256p',
+                                vq: 'small'
+                            }
+                        }
+                    }
+                }
             />
         </main>
     );

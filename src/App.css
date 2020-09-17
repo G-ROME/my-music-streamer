@@ -25,7 +25,7 @@ main{
 }
 
 .loaderContainer{
-  margin: auto;
+  margin: 10em auto;
   color: #000;
 }
 
@@ -40,11 +40,11 @@ main{
 }
 
 .miniLoader {
-  border: .2em solid #f2f2f2;
-  border-top: .2em solid rgba(180, 180, 180, .7);
-  border-radius: 50%;
-  width: 1em;
-  height: 1em;
+  border: .3em solid #f2f2f2;
+  border-top: .3em solid rgba(180, 180, 180, .7);
+  border-radius: 100%;
+  width: .8em;
+  height: .8em;
   animation: spin 1s linear infinite;
 }
 
@@ -153,8 +153,13 @@ img{
   display: flex;
 }
 
+iframe{
+  height : 144px;
+  width: 256px;
+}
+
 .ReactPlayer{
-  display: none;
+  /* display: none; */
 }
 
 
