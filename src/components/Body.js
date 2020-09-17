@@ -13,10 +13,8 @@ function Body() {
         const [queryString, setQueryString] = useState('aviencloud');
     const params =
     `/search?part=snippet&maxResults=${maxResults}&order=relevance&q=${queryString}&type=video&videoCategoryId=10&key=`;
-    const API_KEY= process.env.REACT_APP_API_KEY;
-    const API_KEY_test= process.env.REACT_APP_API_KEY_test;
     const API_KEY_test01= process.env.REACT_APP_API_KEY_test01;
-    const apiUrl = api + params + API_KEY_test;
+    const apiUrl = api + params + API_KEY_test_01;
 
     const [sauce, setSauce] = useState(null);
     let url = `https://www.youtube.com/watch?v=${sauce}`;
