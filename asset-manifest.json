@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/my-music-streamer/static/css/main.18548e97.chunk.css",
-    "main.js": "/my-music-streamer/static/js/main.be4447b4.chunk.js",
-    "main.js.map": "/my-music-streamer/static/js/main.be4447b4.chunk.js.map",
+    "main.css": "/my-music-streamer/static/css/main.74b818e6.chunk.css",
+    "main.js": "/my-music-streamer/static/js/main.a2ed6757.chunk.js",
+    "main.js.map": "/my-music-streamer/static/js/main.a2ed6757.chunk.js.map",
     "runtime-main.js": "/my-music-streamer/static/js/runtime-main.ef03f739.js",
     "runtime-main.js.map": "/my-music-streamer/static/js/runtime-main.ef03f739.js.map",
     "static/js/2.a1615aaf.chunk.js": "/my-music-streamer/static/js/2.a1615aaf.chunk.js",
     "static/js/2.a1615aaf.chunk.js.map": "/my-music-streamer/static/js/2.a1615aaf.chunk.js.map",
     "index.html": "/my-music-streamer/index.html",
-    "precache-manifest.2d1fab5097465c4dff2c5c22b363697e.js": "/my-music-streamer/precache-manifest.2d1fab5097465c4dff2c5c22b363697e.js",
+    "precache-manifest.afaa87a0ef45b625e5b06d11384af444.js": "/my-music-streamer/precache-manifest.afaa87a0ef45b625e5b06d11384af444.js",
     "service-worker.js": "/my-music-streamer/service-worker.js",
-    "static/css/main.18548e97.chunk.css.map": "/my-music-streamer/static/css/main.18548e97.chunk.css.map",
+    "static/css/main.74b818e6.chunk.css.map": "/my-music-streamer/static/css/main.74b818e6.chunk.css.map",
     "static/js/2.a1615aaf.chunk.js.LICENSE.txt": "/my-music-streamer/static/js/2.a1615aaf.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.ef03f739.js",
     "static/js/2.a1615aaf.chunk.js",
-    "static/css/main.18548e97.chunk.css",
-    "static/js/main.be4447b4.chunk.js"
+    "static/css/main.74b818e6.chunk.css",
+    "static/js/main.a2ed6757.chunk.js"
   ]
 }
