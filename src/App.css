@@ -40,7 +40,6 @@ main{
 }
 
 .miniLoader {
-  margin: .1em auto;
   border: .2em solid #f2f2f2;
   border-top: .2em solid rgba(180, 180, 180, .7);
   border-radius: 50%;

@@ -8,7 +8,6 @@ import ReactPlayer from 'react-player/youtube';
 
 
 function Body() {
-    //https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&order=relevance&q=nightcore&type=video&videoCategoryId=10&key=(your key here)
     const api = 'https://www.googleapis.com/youtube/v3';
         const maxResults = 12;
         const [queryString, setQueryString] = useState('aviencloud');
@@ -17,7 +16,7 @@ function Body() {
     const API_KEY= process.env.REACT_APP_API_KEY;
     const API_KEY_test= process.env.REACT_APP_API_KEY_test;
     const API_KEY_test01= process.env.REACT_APP_API_KEY_test01;
-    const apiUrl = api + params + API_KEY_test01;
+    const apiUrl = api + params + API_KEY_test;
 
     const [sauce, setSauce] = useState(null);
     let url = `https://www.youtube.com/watch?v=${sauce}`;
@@ -66,11 +65,13 @@ function Body() {
 
     if(music.data){
         let playListContainer = [];
+        let loadedItems = 0;
         content = 
         music.data.map((music, key) => 
         <div className="channelCard" 
                 key = {key}
                 onLoad = {() => {
+                        loadedItems += 1; 
                         playListContainer[key] = {
                             'title': music.snippet.title,
                             'id': music.id.videoId,
@@ -78,7 +79,7 @@ function Body() {
                         if(key === 0 && !sauce){
                             checkAndSetBg(music.id.videoId);
                         }
-                        if(key === maxResults-1){
+                        if(loadedItems === 12){
                             setPlaylist(playListContainer);
                         }
                     }
