@@ -10,7 +10,7 @@ import ReactPlayer from 'react-player/youtube';
 function Body() {
     const api = 'https://www.googleapis.com/youtube/v3';
         const maxResults = 12;
-        const [queryString, setQueryString] = useState('aviencloud');
+        const [queryString, setQueryString] = useState('nightcore');
     const params =
     `/search?part=snippet&maxResults=${maxResults}&order=relevance&q=${queryString}&type=video&videoCategoryId=10&key=`;
     const API_KEY_test01= process.env.REACT_APP_API_KEY_test01;
@@ -28,7 +28,7 @@ function Body() {
 
     const [selectedTrack, setSelectedTrack] = useState(null);
 
-    const [bottomPreview, setBottomPreview] = useState('select a track');
+    const [bottomPreview, setBottomPreview] = useState('fetching data');
 
     const [playList, setPlaylist] = useState([]);
     
@@ -62,27 +62,24 @@ function Body() {
         </div>
 
     if(music.data){
-        let playListContainer = [];
-        let loadedItems = 0;
         content = 
         music.data.map((music, key) => 
         <div className="channelCard" 
                 key = {key}
                 onLoad = {() => {
-                        loadedItems += 1; 
-                        playListContainer[key] = {
-                            'title': music.snippet.title,
-                            'id': music.id.videoId,
-                        }
                         if(key === 0 && !sauce){
+                            setBottomPreview('select a track');
                             checkAndSetBg(music.id.videoId);
                         }
-                        if(loadedItems === 12){
-                            setPlaylist(playListContainer);
-                        }
+                        setPlaylist(playList.concat({
+                            'key': key,
+                            'title': music.snippet.title,
+                            'id': music.id.videoId,
+                        }))
+                        document.getElementsByClassName('channelCard')[key].style.display = 'flex';
                     }
                 }
-            onClick = {() => {
+                onClick = {() => {
                     changeMusic(key);
                 }
             }
@@ -95,19 +92,18 @@ function Body() {
         );
     }
 
-    function changeMusic(trackKey){
-        if(playList[trackKey]){
-            setSelectedTrack({
-                'key':trackKey,
-                'title': playList[trackKey].title,
-            });
-            setSauce(playList[trackKey].id);
-            checkAndSetBg(playList[trackKey].id);
-            setBottomPreview(<div className = 'flex'>{'Fetching: ' + playList[trackKey].title }<div className='miniLoader'/></div>);
-            setPlay(true);
-        }else{
-            setBottomPreview("couldn't fetch data check your internet connection and try again");
-        }
+    function changeMusic(key){
+        playList.forEach(music => {
+            if(music.key === key){
+                setSelectedTrack({
+                    'key':music.key,
+                    'title': music.title,
+                });
+                setBottomPreview(<div className = 'flex'>{'Fetching: ' + music.title }<div className='miniLoader'/></div>);
+                setSauce(music.id);
+                setPlay(true);
+            }
+        });
     }
 
     function checkAndSetBg(vidId){
@@ -123,15 +119,22 @@ function Body() {
     }
 
     if(music.error){
-        content = <div className = 'loaderContainer'>
-            {music.error}
-            {music.data}
-            <p>
-                if you're getting a 403, it means we've run out of quota
-                quotas reset on 3pm PST so come back here after the quota resets
-            </p>
-        </div>
+        if(music.error === 'Request failed with status code 403'){
+        content = 
+            <div className = 'loaderContainer'>
+                    we've run out of quota,
+                    quotas reset on 3:00pm PST so 
+                    come back here after the quota resets
+            </div>
+        }else{
+        content = 
+            <div className = 'loaderContainer'>
+                {music.error}
+            </div>
+        }
     }
+
+    
 
     return(
         <main style={{backgroundImage: `url(${bg})`}}>
@@ -147,7 +150,7 @@ function Body() {
                         onClick = {() => {
                                 document.getElementById('searchField').addEventListener('keyup', function(event){
                                     if(event.keyCode === 13){
-                                        setQueryString(this.value)
+                                        setQueryString(this.value);
                                     }
                                 });
                             }
@@ -182,7 +185,11 @@ function Body() {
             </div>
             <ReactPlayer
                 className = 'ReactPlayer'
-                onStart = {() => setBottomPreview('Now Playing: '+selectedTrack.title)}
+                onStart = {() => {
+                    setBottomPreview('Now Playing: '+selectedTrack.title);
+                    checkAndSetBg(sauce);
+                    }
+                }
                 onError = {() => setBottomPreview('something went wrong while fetching the data')}
                 onPlay = {() => setPlayICon(faPause)}
                 onPause = {() => setPlayICon(faPlay)}
@@ -194,8 +201,8 @@ function Body() {
                     {
                         youtube: {
                             playerVars: {
-                                height : '144p',
-                                width: '256p',
+                                height : '144px',
+                                width: '256px',
                                 vq: 'small'
                             }
                         }
